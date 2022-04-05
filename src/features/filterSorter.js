@@ -12,7 +12,7 @@ function lookUp (element, params) {
     if (!params || params.length < 2) {
         return element;
       } else if (
-        element.firstName.toLowerCase().includes(params.toLowerCase())
+        element.lastName.toLowerCase().includes(params.toLowerCase())
       ) {
         return element;
       } else return null;
