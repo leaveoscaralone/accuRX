@@ -3,6 +3,7 @@ import api from "./ApiService";
 import PatientItem from "./components/patientItem";
 import SearchBar from "./components/searchBar";
 import SortBtn from "./components/sortBtn";
+import filters from "./features/filterSorter"
 
 function App() {
   const [patients, setPatients] = useState([]);
@@ -12,26 +13,11 @@ function App() {
   useEffect(() => {
     api
       .getAll()
-      .then((patients) => {
-        if (!sort) {
-          return patients;
-        } else if (sort === "asc") {
-          return patients.sort((a, b) => (a.firstName < b.firstName ? -1 : 1));
-        } else {
-          return patients.sort((a, b) => (a.firstName > b.firstName ? -1 : 1));
-        }
-      })
+      .then((patients) => filters.sorter(patients, sort))
       .then((patients) =>
         patients.filter((patient) => {
-          if (!searchParam || searchParam.length < 2) {
-            return patient;
-          } else if (
-            patient.firstName.toLowerCase().includes(searchParam.toLowerCase())
-          ) {
-            return patient;
-          } else return null;
-        })
-      )
+          return filters.lookUp(patient, searchParam)
+        }))
       .then((result) => setPatients(result));
   }, [searchParam, sort]);
 
