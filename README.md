@@ -12,10 +12,9 @@ Patient data can be accessed using the following endpoint: [[https://61ba219448d
 
 # Instructions:
 1️. Please present the following patient data to the end user:
-    - Patient’s first and last name.
-    - Vaccine application date.
-    - The type of vaccine the patient had.
-    
+- Patient’s first and last name.
+- Vaccine application date.
+- The type of vaccine the patient had.    
 2. Make the data sortable by the patient's last name, alphabetically in ascending and descending order.
 3. Create a search box which automatically filters the list of results based on patient names. The filtering should occur after the user has entered the first two characters.
 
